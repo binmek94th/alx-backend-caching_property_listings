@@ -1,9 +1,11 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from properties.views import PropertiesView
+from properties.views import property_list
 
 router = DefaultRouter()
 
-router.register('properties', PropertiesView.as_view(), basename='properties')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('properties/', property_list, name='property-list'),
+]
