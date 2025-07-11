@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework.response import Response
 
 from properties.models import Property
@@ -9,5 +10,4 @@ def property_list(request):
     Function-based view to handle property listings with caching.
     """
     properties = Property.objects.all()
-    serializer = PropertyListingSerializer(properties, many=True)
-    return Response(serializer.data, status=200)
+    return JsonResponse(properties, safe=False)
