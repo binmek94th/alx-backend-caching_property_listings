@@ -1,7 +1,7 @@
 from django.core.cache import cache
 
 
-def getallproperties():
+def get_all_properties():
     """
     Get all properties from the properties module.
     """
