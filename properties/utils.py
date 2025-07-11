@@ -12,3 +12,22 @@ def get_all_properties():
         cache.set('all_properties', queryset, 3600)
         return queryset
     return properties
+
+
+def get_redis_cache_metrics():
+    """
+    Get Redis cache metrics.
+    """
+    from django_redis import get_redis_connection
+    redis_conn = get_redis_connection("default")
+
+    hit = redis_conn.conn.info("keyspace")['db0']['keys']
+    miss = redis_conn.conn.info("keyspace")['db0']['expires']
+    calculated_metrics = hit / (hit + miss)
+    metrics = {
+        "hit_count": redis_conn.info("keyspace")['db0']['keys'],
+        "miss_count": redis_conn.info("keyspace")['db0']['expires'],
+        "calculated_metrics": calculated_metrics
+    }
+    print(calculated_metrics)
+    return metrics
