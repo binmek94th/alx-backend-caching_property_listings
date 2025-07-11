@@ -2,15 +2,13 @@ from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
 from rest_framework.response import Response
 
-from properties.models import Property
+from properties.utils import getallproperties
 
 
-@cache_page(60 * 15)
 def property_list(request):
     """
     Function-based view to handle property listings with caching.
     """
-    properties = Property.objects.all().values()
-    data = list(properties)
+    data = list(getallproperties())
 
     return JsonResponse({"data": data})
