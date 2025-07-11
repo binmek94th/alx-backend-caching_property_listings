@@ -79,11 +79,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'listing_db',
-        'USER': 'example_user',
-        'PASSWORD': 'example_password',
-        'HOST': 'localhost'
+        'USER': 'postgres',
+        'PASSWORD': '1qaz2wsx',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
